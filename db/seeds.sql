@@ -1,10 +1,12 @@
+--Seeds for department--
 INSERT INTO department (name)
 VALUES ("Marketing"),
        ("Product"),
        ("Sales"),
        ("HR");
-       
-INSERT INTO role (title, department_id, salary)
+
+--Seeds for role--
+INSERT INTO roles (title, department_id, salary)
 VALUES ("Event Marketing Manager", 1, 95000),
        ("Content Marketing Manager", 1, 115000),
        ("Product Manager", 2, 93000),
@@ -14,6 +16,7 @@ VALUES ("Event Marketing Manager", 1, 95000),
        ("Head of people", 4, 119000),
        ("Pay Roll Specialist", 4, 65000);
 
+--Seeds for employee--
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ("Melissa", "Tam", 1, null),
        ("Camila", "Santos", 2, 1),
