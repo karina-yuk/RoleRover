@@ -148,5 +148,52 @@ function dbStart() {
 
         dbStart();
       });
-    }},
-    )}
+
+      // If user selects "Add Role" they can add a new role
+    } else if (systemAction === "Add Role") {
+      const curDept = `SELECT name FROM department;`;
+
+      db.query(curDept, function (err, result) {
+        if (err) throw err;
+
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message: "What is the name of the role?",
+              name: "title",
+            },
+            {
+              type: "input",
+              message: "What is the salary of the role?",
+              name: "salary",
+            },
+            {
+              type: "list",
+              choices: result,
+              message: "What department does the role belong to?",
+              name: "department",
+            },
+          ])
+          .then((responses) => {
+            const dept = `SELECT id FROM department WHERE name='${responses.department}';`;
+
+            db.query(dept, function (err, result) {
+              if (err) throw err;
+              const title = JSON.stringify(responses.title);
+              const salary = JSON.stringify(responses.salary);
+              const sql = `INSERT INTO role (title, department_id, salary)
+                VALUES (${title}, ${JSON.stringify(result[0].id)}, ${salary})`;
+
+              db.query(sql, function (err, result) {
+                if (err) throw err;
+              });
+
+              console.log(`Success! Added ${title} to the database`);
+
+              dbStart();
+            });
+          });
+      });
+    }});
+  }
