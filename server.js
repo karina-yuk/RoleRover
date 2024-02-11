@@ -195,5 +195,81 @@ function dbStart() {
             });
           });
       });
-    }});
-  }
+
+      // If user choses "Add Employee" they can add a new employee
+    } else if (systemAction === "Add Employee") {
+      const allRoles = `SELECT title FROM role;`;
+
+      // Getting employee list and adding "None" to the list
+      employeeList().then((response) => {
+        const empList = ["None", ...response];
+
+        // Querying all Roles to make role list
+        db.query(allRoles, function (err, result) {
+          // Getting title from each row
+          const roles = result.map((row) => row.title);
+          if (err) throw err;
+
+          inquirer
+            .prompt([
+              {
+                type: "input",
+                message: "What is the employee's first name?",
+                name: "first_name",
+              },
+              {
+                type: "input",
+                message: "What is the employee's last name?",
+                name: "last_name",
+              },
+              {
+                type: "list",
+                choices: roles, // Using roles values
+                message: "What is the employee's role?",
+                name: "title",
+              },
+              {
+                type: "list",
+                choices: empList, // Using response from manager list
+                message: "Who is the employee's manager?",
+                name: "manager",
+              },
+            ])
+            .then((responses) => {
+              const role = `SELECT id FROM role WHERE title=${JSON.stringify(
+                responses.title
+              )};`;
+              // Extracting first name and last name of new employee
+              const first_name = JSON.stringify(responses.first_name);
+              const last_name = JSON.stringify(responses.last_name);
+
+              employeeID(responses.manager).then((response) => {
+                db.query(role, function (err, result) {
+                  // Using new query of role ID as result and response as manager_ID
+                  if (err) throw err;
+
+                  if (response != null) {
+                    response = `${JSON.stringify(response[0].id)}`;
+                  }
+
+                  const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id)
+                      VALUES (${first_name}, ${last_name}, ${JSON.stringify(
+                    result[0].id
+                  )}, ${response})`;
+
+                  db.query(sql, function (err, result) {
+                    if (err) throw err;
+                    console.log(
+                      `Success! Added ${first_name} ${last_name} to the database`
+                    );
+
+                    dbStart();
+                  });
+                });
+              });
+            });
+        });
+      });
+    }
+  });
+}
