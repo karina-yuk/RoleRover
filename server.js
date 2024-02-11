@@ -270,6 +270,59 @@ function dbStart() {
             });
         });
       });
+
+      // If user chooses "Update Employee Role" they can update an employee
+    } else if (systemAction === "Update Employee Role") {
+      const roleList = `SELECT title AS role FROM role;`;
+
+      employeeList().then((response) => {
+        db.query(roleList, function (err, result) {
+          const role = result.map((row) => row.role);
+
+          inquirer
+            .prompt([
+              {
+                type: "list",
+                message: "Which employee's role do you want to update?",
+                choices: response,
+                name: "employee",
+              },
+              {
+                type: "list",
+                message:
+                  "Which role do you want to assign the selected employee?",
+                choices: role,
+                name: "role",
+              },
+            ])
+            .then((responses) => {
+              const role = `SELECT id FROM role WHERE title=${JSON.stringify(
+                responses.role
+              )};`;
+              employeeID(responses.employee).then((response) => {
+                db.query(role, function (err, result) {
+                  // Using new query of role ID as result and response as manager_ID
+                  if (err) throw err;
+
+                  const sql = `UPDATE employee
+                      SET role_id = ${JSON.stringify(result[0].id)}
+                      WHERE id=${JSON.stringify(response[0].id)}`;
+
+                  db.query(sql, function (err, result) {
+                    if (err) throw err;
+                    console.log(
+                      `Success! Updated ${responses.employee} role to ${responses.role}`
+                    );
+
+                    dbStart();
+                  });
+                });
+              });
+            });
+        });
+      });
     }
   });
 }
+
+dbStart();
