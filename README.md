@@ -52,7 +52,7 @@ Sample image of the application shown :
    <img src="./assets/Images/Updated employee role.JPG">
 
    Click on the link to view a video demonstration of the application:
-   https://drive.google.com/file/d/1nl7Nghras3Ny_YDsZ-FnYlGQ-_MPq0s0/view
+   https://drive.google.com/file/d/1dmzQVpgEud9tj5r9YqldHRWtHSZLUI4S/view?usp=sharing
 
 ## Reference
 
