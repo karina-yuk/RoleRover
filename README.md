@@ -56,6 +56,13 @@ Sample image of the application shown :
 
 ## Reference
 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+https://www.w3schools.com/sql/default.asp
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+https://www.npmjs.com/package/inquirer
+https://www.npmjs.com/package/mysql2
+https://coding-boot-camp.github.io/full-stack/computer-literacy/video-submission-guide
+
 ## License
 
 MIT license was used for this application.
