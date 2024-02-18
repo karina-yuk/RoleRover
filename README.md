@@ -35,20 +35,35 @@ This application is command line application use to manage a company's employee 
 Sample image of the application shown :
 
 1. Starting the application.
+
    <img src="./assets/Images/Start server.JPG">
+
 2. View all deparments.
+
    <img src="./assets/Images/All departments.JPG">
+
 3. View all roles.
+
    <img src="./assets/Images/All roles.JPG">
+
 4. View all employees.
+
    <img src="./assets/Images/All employees.JPG">
+
 5. Adding new department.
+
    <img src="./assets/Images/Added new department.JPG">
+
 6. Adding new role.
+
    <img src="./assets/Images/Added new role.JPG">
+
 7. Adding new employee.
+
    <img src="./assets/Images/Added new employee.JPG">
+
 8. Updating employee role.
+
    <img src="./assets/Images/Updated employee role.JPG">
 
    Click on the link to view a video demonstration of the application:
