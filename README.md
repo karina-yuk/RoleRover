@@ -51,7 +51,8 @@ Sample image of the application shown :
 8. Updating employee role.
    <img src="./assets/Images/Updated employee role.JPG">
 
-   
+   Click on the link to view a video demonstration of the application:
+   https://drive.google.com/file/d/1nl7Nghras3Ny_YDsZ-FnYlGQ-_MPq0s0/view
 
 ## Reference
 
