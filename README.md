@@ -24,7 +24,7 @@ To use this application locally, please follow the steps below:
 - Clone the repository to your local machine.
 - Then you can use schema.sql and seeds.sql to build your database and tables and also seed them with data.
 - Once the database is created and seeded, you can install the required dependencies.
-- Run the application using the command "node run start" in the terminal.
+- Run the application using the command "node server.js" in the terminal.
 
 ## Usage
 
